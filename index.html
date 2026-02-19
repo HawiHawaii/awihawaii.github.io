@@ -813,35 +813,40 @@
     <a href="https://wa.me/491234567890?text=Hallo!%20Ich%20interessiere%20mich%20für%20eine%20Website." class="btn btn-whatsapp" title="WhatsApp Chat">
         💬
     </a>
+
+<script>
+// Countdown Timer - läuft richtig!
+function updateCountdown() {
+    // Setze End-Datum (7 Tage von jetzt)
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 7);
     
-    <script>
-        // Simple countdown timer
-        function updateCountdown() {
-            const days = document.getElementById('days');
-            const hours = document.getElementById('hours');
-            const minutes = document.getElementById('minutes');
-            
-            // This is just a demo - you would set an actual end date
-            let d = parseInt(days.textContent) || 7;
-            let h = parseInt(hours.textContent) || 12;
-            let m = parseInt(minutes.textContent) || 30;
-            
-            m--;
-            if (m < 0) {
-                m = 59;
-                h--;
-                if (h < 0) {
-                    h = 23;
-                    d--;
-                }
-            }
-            
-            days.textContent = d;
-            hours.textContent = h;
-            minutes.textContent = m;
-        }
-        
-        setInterval(updateCountdown, 60000); // Update every minute
-    </script>
+    // Berechne Differenz
+    const now = new Date();
+    const diff = endDate - now;
+    
+    // Berechne Tage, Stunden, Minuten
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    // Update HTML
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    
+    // Wenn du auch Sekunden zeigen willst:
+    // document.getElementById('seconds').textContent = seconds;
+}
+
+// Update jede Sekunde!
+setInterval(updateCountdown, 1000);
+
+// Starte sofort
+updateCountdown();
+</script>
+```
+
 </body>
 </html>
